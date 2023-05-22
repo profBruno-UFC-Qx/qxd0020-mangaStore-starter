@@ -1,25 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { api } from './baseConfig'
-import MangaCard from './components/MangaCard.vue'
-
-const mangas = ref()
-const response = await api.get('/mangas')
-mangas.value = response.data.data; 
-
 </script>
 
 <template>
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" v-for="manga in mangas">
-          <MangaCard :title="manga.title" :price="manga.price" :number="manga.number"></MangaCard> 
-        </div>
-
-      </div>
-    </div>
-  </div>
+ <router-view></router-view>
 </template>
 
 <style scoped>
