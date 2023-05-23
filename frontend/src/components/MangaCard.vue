@@ -5,7 +5,9 @@ defineProps<{
   title: string,
   number: number,
   price: number,
-  cover: string
+  cover: {
+    url: string
+  }
 }>()
 
 function getUploadURL(url: string) {
@@ -15,7 +17,7 @@ function getUploadURL(url: string) {
 
 <template>
   <div class="card shadow-sm">
-    <img :src="getUploadURL(cover)">
+    <img :src="getUploadURL(cover.url)">
     <div class="card-body">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">Volume: {{ number }}</p>

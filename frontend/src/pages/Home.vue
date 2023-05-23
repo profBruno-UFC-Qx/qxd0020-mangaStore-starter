@@ -17,7 +17,7 @@ onMounted(async () => {
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="manga in mangas">
-          <MangaCard :title="manga.title" :price="manga.price" :number="manga.number" :cover="manga.cover.url"></MangaCard> 
+          <MangaCard :title="manga.title" :price="manga.price" :number="manga.number" :cover="manga.cover"></MangaCard> 
         </div>
 
       </div>
