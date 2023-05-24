@@ -37,6 +37,12 @@
     },
     "summary": {
       "type": "text"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "manga"
     }
   }
 }

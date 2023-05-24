@@ -1,34 +1,40 @@
 <script setup lang="ts">
-import { baseURL } from '../baseConfig';
+import { Manga } from '../api/mangaService';
+import { useUploadFile } from '../composables/useUploadURL';
+const manga = defineProps<Omit<Manga, "comments">>()
 
-defineProps<{
-  title: string,
-  number: number,
-  price: number,
-  cover: {
-    url: string
-  }
-}>()
 
-function getUploadURL(url: string) {
-  return `${baseURL}${url}`
-}
 </script>
 
 <template>
+  <router-link :to="`/mangas/${manga.id}`">
   <div class="card shadow-sm">
-    <img :src="getUploadURL(cover.url)">
+    <figure>
+      <img class="cover" :src="useUploadFile(cover.url)">
+    </figure>
     <div class="card-body">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">Volume: {{ number }}</p>
       <p class="card-text">Price: {{ price }}</p>
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-        </div>
-        <small class="text-body-secondary">9 mins</small>
-      </div>
     </div>
   </div>
+</router-link>
 </template>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+
+figure {
+  background-color: #1abc9c;
+}
+img.cover {
+  width: 100%;
+  filter: sepia(0%);
+  transition: 0.3s ease-in-out;
+}
+img.cover:hover {
+  filter: sepia(100%);
+}
+</style>
