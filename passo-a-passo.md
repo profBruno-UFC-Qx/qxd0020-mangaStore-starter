@@ -26,8 +26,6 @@
 1. O componente MangaInDetails deve receber uma Manga como prop
 1. Crie um método para recuperar um manga a partir do seu ID via Axios
 1. Altere o **MangaInDetails** para que ele utilizar o id enviado, recuperar o Mangá junto ao backend e mostrá-lo 
-
-## A fazer
 1. Explicar diferença do onMoutend vs onBeforeMount
 1. LoadingContainer
 1. Criar a tabela Comentário no Strapi
@@ -35,6 +33,8 @@
 1. Explicar componentes de comentários
 1. Tratando o 404 e rotas inexistentes
 1. Explicar paginação
+
+## A fazer
 1. Área de adminstração, vue-router
 1. Página de login
 1. Autenticação/Autorização teórico
