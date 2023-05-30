@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import { RouteLocationNormalized, onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { useMangaService, MangaCollection } from '../api/mangaService'
 import MangaCard from '../components/MangaCard.vue'
 import LoadingContainer from '../components/LoadingContainer.vue';
@@ -20,7 +20,7 @@ onMounted(async () => {
   loading.value = false
 })
 
-onBeforeRouteUpdate(async (to, from) => {
+onBeforeRouteUpdate(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
   if (to.query.page && to.query.page != from.query.page) {
     const page = Number(to.query.page)
     mangaCollection.value = await mangaService.get(page)
