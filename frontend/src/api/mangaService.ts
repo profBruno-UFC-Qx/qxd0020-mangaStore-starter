@@ -1,31 +1,7 @@
 import { api } from '../baseConfig'
+import { MangaCollection, Manga } from '@types'
 
-export interface Manga {
-  id: number,
-  title: string,
-  price: number,
-  number: number,
-  cover: {
-    url: string
-  },
-  comments:[{
-    id: number,
-    description: string,
-    rating: number
-  }]
-}
 
-export interface Pagination {
-  page: number,
-  pageCount: number,
-  pageSize: number,
-  total: number
-}
-
-export interface MangaCollection {
-  items: Manga[],
-  pagination: Pagination
-}
 
 class MangaService {
 

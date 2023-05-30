@@ -33,15 +33,15 @@
 1. Explicar componentes de comentários
 1. Tratando o 404 e rotas inexistentes
 1. Explicar paginação
-
-## A fazer
 1. Área de adminstração, vue-router
 1. Página de login
 1. Autenticação/Autorização teórico
 1. Escrever métodos de autenticação/autorização com o Strapi
+1. Listar manga na home do usuário admin
+
+## A fazer
 1. Pinia
 1. Proteger rota + Axios interceptors
-1. Listar manga na home do usuário admin
 1. Criar o método de deleção de um mangá
 1. No home do admin, permitir a deleção de um mangá. Confirmar a deleção via modal.
 1. Criar rota de atualização de um mangá

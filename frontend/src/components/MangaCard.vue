@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Manga } from '../api/mangaService';
-import { useUploadFile } from '../composables/useUploadURL';
+import { Manga } from '@types'
+import { useUploadFile } from '../composables/useUploadURL'
 const manga = defineProps<Omit<Manga, "comments">>()
 
 

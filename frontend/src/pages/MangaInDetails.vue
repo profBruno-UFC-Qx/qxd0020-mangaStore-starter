@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { Manga } from '@types'
 import { useUploadFile } from '../composables/useUploadURL'
-import { Manga, useMangaService } from '../api/mangaService'
+import { useMangaService } from '../api/mangaService'
 import CommentsContainer from '../components/Comment/Container.vue'
 import LoadingContainer from '../components/LoadingContainer.vue'
 

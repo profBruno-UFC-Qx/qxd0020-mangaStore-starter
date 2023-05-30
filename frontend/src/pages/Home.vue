@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { RouteLocationNormalized, onBeforeRouteUpdate, useRoute } from 'vue-router';
-import { useMangaService, MangaCollection } from '../api/mangaService'
+import { MangaCollection } from '@types'
+import { RouteLocationNormalized, onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { useMangaService } from '../api/mangaService'
 import MangaCard from '../components/MangaCard.vue'
-import LoadingContainer from '../components/LoadingContainer.vue';
+import LoadingContainer from '../components/LoadingContainer.vue'
 
 const mangaService = useMangaService()
 const mangaCollection = ref({} as MangaCollection)
