@@ -11,6 +11,23 @@ export interface StrapiResponse<T> {
   }
 }
 
+export interface StrapiError {
+  error: {
+    status: number,
+    name: string,
+    message: string,
+    details: {
+      errors: StrapiErrorDetail[]
+    }
+  }
+}
+
+export interface StrapiErrorDetail {
+  path: string[],
+  message: string,
+  name: string,
+}
+
 export interface Pagination {
   page: number,
   pageCount: number,

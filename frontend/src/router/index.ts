@@ -8,7 +8,7 @@ import AdminHome from '../pages/AdminHome.vue'
 const routes: RouteRecordRaw[] = [
   { path: "/",  alias:"/mangas", component: Home},
   { path: "/mangas/:id", component: MangaInDetails, props: true},
-  { path: "/error", component: ErrorPage},
+  { path: "/error", component: ErrorPage, props: true },
   { path: "/login", component: Login},
   { path: "/admin", component: AdminHome, meta: { permissions: ['admin']}},
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: ErrorPage }
