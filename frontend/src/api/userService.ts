@@ -1,9 +1,10 @@
 import { AxiosResponse } from "axios"
 import { api } from "../baseConfig"
-import { LoginRequest, LoginResponse, User } from '@types'
+import { ApplicationError, LoginRequest, LoginResponse, User } from '@types'
+import { useErrorUtil } from "../composables/useApplicationError"
 
 class UserService {
-  async login(identifier: string, password: string) : Promise<User | Error>{
+  async login(identifier: string, password: string) : Promise<User | ApplicationError>{
     try {
       const { data } = await api.post<LoginResponse, AxiosResponse<LoginResponse>, LoginRequest>("/auth/local", {
         identifier,
@@ -22,7 +23,7 @@ class UserService {
       })
       return res.data
     } catch (error) {
-      return error as Error
+      return useErrorUtil().retrive(error)
     }
   }
 }

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useUserService } from '../api/userService'
 import { useRouter } from 'vue-router'
+import { useErrorUtil } from '../composables/useApplicationError'
 
 const identifier = ref("")
 const password = ref("")
@@ -13,7 +14,7 @@ async function authenticate(event: MouseEvent) {
     event.stopPropagation()
     const userService = useUserService()
     const result = await userService.login(identifier.value, password.value)
-    if(result instanceof Error) {
+    if(useErrorUtil().isAppError(result)) {
         message.value = result.message
     } else {
         if(result.role.type == "admin") {

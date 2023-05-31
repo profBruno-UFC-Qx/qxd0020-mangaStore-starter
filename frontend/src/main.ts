@@ -14,8 +14,8 @@ api.interceptors.response.use((response: AxiosResponse) => response, function (e
   if (error.response && error.response.status !== 400) {
     console.log(error)
     router.replace({
-      path: '/error',
-      params: {
+      name: 'error',
+      query: {
         status: error.response.status,
         msg: error.response.data.error.message
       }

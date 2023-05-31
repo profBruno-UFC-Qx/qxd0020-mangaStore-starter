@@ -1,7 +1,7 @@
 export interface ApplicationError {
   name: string,
   message: string,
-  details?: string,
+  details?: string[],
 }
 
 export interface StrapiResponse<T> {
