@@ -1,12 +1,12 @@
 import { api } from '../baseConfig'
-import { MangaCollection, Manga } from '@types'
+import { StrapiResponse, MangaCollection, Manga } from '@types'
 
 
 
 class MangaService {
 
   async get(page =  1): Promise<MangaCollection> {
-    const { data } = await api.get('/mangas', {
+    const { data } = await api.get<StrapiResponse<Manga[]>>('/mangas', {
       params: {
         populate: ['cover'],
         "pagination[page]": page,
@@ -16,15 +16,13 @@ class MangaService {
   }
 
   async getById(id: number): Promise<Manga> {
-    const { data } = await api.get(`/mangas/${id}`, {
+    const { data } = await api.get<StrapiResponse<Manga>>(`/mangas/${id}`, {
       params: {
         populate: ['cover', 'comments']
       }
     })
     return data.data
   }
-
-
 }
 
 

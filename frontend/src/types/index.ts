@@ -4,6 +4,25 @@ export interface ApplicationError {
   details?: string,
 }
 
+export interface StrapiResponse<T> {
+  data: T,
+  meta: {
+    pagination: Pagination
+  }
+}
+
+export interface Pagination {
+  page: number,
+  pageCount: number,
+  pageSize: number,
+  total: number
+}
+
+export interface MangaCollection {
+  items: Manga[],
+  pagination: Pagination
+}
+
 export interface Manga {
   id: number,
   title: string,
@@ -21,21 +40,19 @@ export interface Comment {
   rating: number
 }
 
-export interface Pagination {
-  page: number,
-  pageCount: number,
-  pageSize: number,
-  total: number
+export interface LoginRequest {
+  identifier: string,
+  password: string
 }
 
-export interface MangaCollection {
-  items: Manga[],
-  pagination: Pagination
+export interface LoginResponse {
+  jwt: string,
+  user: User
 }
 
 export interface User {
   id: number,
-  name: string,
+  username: string,
   email: string,
   role: {
     type: string
