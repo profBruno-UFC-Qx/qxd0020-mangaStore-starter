@@ -21,10 +21,17 @@ class UserService {
           Authorization: `Bearer ${jwt}`
         }
       })
+      this.saveLocally(res.data, jwt)
       return res.data
     } catch (error) {
       return useErrorUtil().retrive(error)
     }
+  }
+
+  saveLocally(user: User, jwt: string){
+    localStorage.setItem("username", user.username)
+    localStorage.setItem("token", jwt)
+    localStorage.setItem("role", user.role.type)
   }
 }
 
