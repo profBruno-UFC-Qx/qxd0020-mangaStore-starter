@@ -5,6 +5,7 @@ import { RouteLocationNormalized, onBeforeRouteUpdate, useRoute } from 'vue-rout
 import { useMangaService } from '../api/mangaService'
 import MangaCard from '../components/MangaCard.vue'
 import LoadingContainer from '../components/LoadingContainer.vue'
+import { useErrorUtil } from '../composables/useApplicationError'
 
 const mangaService = useMangaService()
 const mangaCollection = ref({} as MangaCollection)
@@ -17,14 +18,20 @@ const route = useRoute()
 const currentPage = route.query.page ? Number(route.query.page) : 1
 
 onMounted(async () => {
-  mangaCollection.value = await mangaService.get(currentPage)
+  const result = await mangaService.get(currentPage)
+  if(!useErrorUtil().isAppError(result)) {
+    mangaCollection.value = result
+  }
   loading.value = false
 })
 
 onBeforeRouteUpdate(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
   if (to.query.page && to.query.page != from.query.page) {
     const page = Number(to.query.page)
-    mangaCollection.value = await mangaService.get(page)
+    const result = await mangaService.get(page)
+    if(!useErrorUtil().isAppError(result)) {
+      mangaCollection.value = result
+    }
   }
 })
 
