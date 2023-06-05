@@ -6,6 +6,7 @@ class AppError {
   static isAppError(error: any): error is ApplicationError {
     return error.name !== undefined && error.message !== undefined
   }
+  
   static retrive(error: any): ApplicationError {
     if (axios.isAxiosError<StrapiError>(error)) {
       if (error.response) {

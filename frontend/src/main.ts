@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import { router } from './router'
 import { api } from './baseConfig'
 import App from './App.vue'
@@ -6,6 +7,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { StrapiError } from '@types'
 
 const app = createApp(App)
+app.use(createPinia())
 app.use(router)
 app.mount('#app')
 

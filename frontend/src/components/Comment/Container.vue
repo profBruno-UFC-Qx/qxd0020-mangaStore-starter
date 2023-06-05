@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Comment } from '@types';
+import { Comment } from '../../types';
 import CommentCard from './CommentCard.vue'
 
 defineProps<{ comments: Comment[]
