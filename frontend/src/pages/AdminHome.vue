@@ -42,7 +42,12 @@ onBeforeRouteUpdate(async (to: RouteLocationNormalized, from: RouteLocationNorma
 })
 
 function remove() {
-  return mangaService.remove(selectedManga.value.id)
+  const result =  mangaService.remove(selectedManga.value.id)
+  if(useErrorUtil().isAppError(result)) {
+    notificationStore.error(result.message)
+  } else {
+    notificationStore.add(`Manga ${selectedManga.value.title} removido com sucesso`)
+  }
 }
 
 function askConfirmation(id: number, title: string) {
