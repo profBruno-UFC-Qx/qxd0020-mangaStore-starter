@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { RouteLocationNormalized, onBeforeRouteUpdate, useRoute } from 'vue-router'
-import { MangaCollection } from '@types'
+import { MangaCollection } from '../types'
 import { useMangaService } from '../api/mangaService'
 import LoadingContainer from '../components/LoadingContainer.vue';
 import { useUploadFile } from '../composables/useUploadURL';

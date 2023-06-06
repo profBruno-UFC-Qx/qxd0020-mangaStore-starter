@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ApplicationError, StrapiError } from '@types'
+import { ApplicationError, StrapiError } from '../types'
 
 class AppError {
 

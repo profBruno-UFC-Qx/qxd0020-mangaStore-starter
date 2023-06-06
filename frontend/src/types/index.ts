@@ -75,3 +75,15 @@ export interface User {
     type: string
   }
 }
+
+export enum Status {
+  SUCCESS = "success",
+  WARNING = "warning",
+  ERROR = "danger"
+}
+
+export interface Message {
+  id: number,
+  content: string
+  status: Status
+}

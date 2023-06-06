@@ -1,5 +1,5 @@
 import { api } from '../baseConfig'
-import { StrapiResponse, MangaCollection, Manga, ApplicationError } from '@types'
+import { StrapiResponse, MangaCollection, Manga, ApplicationError } from '../types'
 import { useErrorUtil } from '../composables/useApplicationError'
 import { useUserStore } from '../stores/userStore'
 

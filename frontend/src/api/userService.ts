@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios"
 import { api } from "../baseConfig"
-import { ApplicationError, LoginRequest, LoginResponse, User } from '@types'
+import { ApplicationError, LoginRequest, LoginResponse, User } from '../types'
 import { useErrorUtil } from "../composables/useApplicationError"
 import { useUserStore } from "../stores/userStore"
 
