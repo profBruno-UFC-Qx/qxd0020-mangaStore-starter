@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import Toast from './components/Toast/Toast.vue'
+import ToastContainer from './components/Toast/ToastContainer.vue'
 import { useUserStore } from './stores/userStore'
+import { useNotificationStore } from './stores/notificationStore'
 
 const userStore = useUserStore()
+const notificationStore = useNotificationStore()
 const isLogged = computed(() => userStore.jwt) 
 
 function logout(){
@@ -131,6 +135,14 @@ function logout(){
   </header>
 
   <router-view></router-view>
+
+  <ToastContainer>
+    <Toast v-for="message in notificationStore.messages" :key="message.id"
+      :id="message.id"
+      :message="message.content"
+      :status="message.status"
+    ></Toast>
+  </ToastContainer>
 
   <footer class="text-body-secondary py-5">
     <div class="container">

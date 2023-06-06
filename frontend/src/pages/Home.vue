@@ -6,7 +6,9 @@ import { useMangaService } from '../api/mangaService'
 import MangaCard from '../components/MangaCard.vue'
 import LoadingContainer from '../components/LoadingContainer.vue'
 import { useErrorUtil } from '../composables/useApplicationError'
+import { useNotificationStore } from '../stores/notificationStore'
 
+const notificationStore = useNotificationStore()
 const mangaService = useMangaService()
 const mangaCollection = ref({} as MangaCollection)
 const loading = ref(true)
@@ -21,6 +23,8 @@ onMounted(async () => {
   const result = await mangaService.get(currentPage)
   if(!useErrorUtil().isAppError(result)) {
     mangaCollection.value = result
+  } else {
+    notificationStore.error(result.message)
   }
   loading.value = false
 })

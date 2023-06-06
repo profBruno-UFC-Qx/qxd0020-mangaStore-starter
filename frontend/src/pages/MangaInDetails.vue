@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { Manga } from '../types'
 import { useUploadFile } from '../composables/useUploadURL'
+import { useErrorUtil } from '../composables/useApplicationError'
 import { useMangaService } from '../api/mangaService'
 import CommentsContainer from '../components/Comment/Container.vue'
 import LoadingContainer from '../components/LoadingContainer.vue'
@@ -16,13 +17,13 @@ const loading = ref(true)
 const message = ref("")
 
 onMounted(async () => {
-  try {
-    manga.value = await mangaService.getById(props.id)
-  } catch (error) {
-    message.value = "Alguma coisa deu errado!"
-  } finally {
-    loading.value = false    
+  const result = await mangaService.getById(props.id)
+  if(!useErrorUtil().isAppError(result)) {
+    manga.value = result
+  } else {
+    message.value = "Alguma coisa deu errado"
   }
+  loading.value = false
 })
 
 </script>
