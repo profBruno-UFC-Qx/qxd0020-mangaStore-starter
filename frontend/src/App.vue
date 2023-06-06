@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useUserStore } from './stores/userStore'
 
 const userStore = useUserStore()
-const username = ref(localStorage.getItem("username"))
+const isLogged = computed(() => userStore.jwt) 
 
 function logout(){
-    localStorage.clear()
+  localStorage.clear()
+  userStore.logout()
 }
 </script>
 
@@ -102,7 +103,7 @@ function logout(){
               <li><a href="https://getbootstrap.com/docs/5.3/examples/album/#" class="text-white">Like on Facebook</a>
               </li>
               <li>
-                <a v-if="username" @click="logout" href="#" class="text-white">Logout</a>
+                <a v-if="isLogged" @click="logout" href="#" class="text-white">Logout</a>
                 <router-link v-else to="/login" class="text-white">Login</router-link>
               </li>
             </ul>

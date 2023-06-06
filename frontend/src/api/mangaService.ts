@@ -1,6 +1,7 @@
 import { api } from '../baseConfig'
 import { StrapiResponse, MangaCollection, Manga, ApplicationError } from '@types'
 import { useErrorUtil } from '../composables/useApplicationError'
+import { useUserStore } from '../stores/userStore'
 
 
 
@@ -31,6 +32,20 @@ class MangaService {
     } catch (error) {
       return useErrorUtil().retrive(error)
     }
+  }
+
+  async remove(id: number): Promise<Manga | ApplicationError> {
+    const userStore = useUserStore()
+    try {
+      const { data } = await api.delete<StrapiResponse<Manga>>(`/mangas/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userStore.jwt}`
+        }
+      })
+      return data.data
+    } catch (error) {
+      return useErrorUtil().retrive(error)
+    } 
   }
 }
 

@@ -4,6 +4,7 @@ import MangaInDetails from '../pages/MangaInDetails.vue'
 import ErrorPage from '../pages/ErrorPage.vue'
 import Login from '../pages/Login.vue'
 import AdminHome from '../pages/AdminHome.vue'
+import { useUserStore } from '../stores/userStore'
 
 const routes: RouteRecordRaw[] = [
   { path: "/", alias: "/mangas", component: Home },
@@ -20,16 +21,14 @@ export const router = createRouter({
 })
 
 router.beforeEach((to: RouteLocationNormalized, _) => {
-  console.log(localStorage.getItem("username"))
-  console.log(localStorage.getItem("role"))
-  console.log(localStorage.getItem("token"))
-  const isAuthenticated = localStorage.getItem("token")
-  const isAdmin = localStorage.getItem("role") == "admin"
+
+  const userStore = useUserStore()
+
   if (to.meta.permissions) {
-    if (!isAuthenticated) {
+    if (!userStore.isAuthenticated) {
       return { path: "/login" }
     } else {
-      if(!isAdmin) {
+      if(!userStore.isAdmin) {
         return { path: "/" }
       }
     }

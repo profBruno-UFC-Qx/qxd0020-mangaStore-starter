@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios"
 import { api } from "../baseConfig"
 import { ApplicationError, LoginRequest, LoginResponse, User } from '@types'
 import { useErrorUtil } from "../composables/useApplicationError"
+import { useUserStore } from "../stores/userStore"
 
 class UserService {
   async login(identifier: string, password: string) : Promise<User | ApplicationError>{
@@ -22,6 +23,12 @@ class UserService {
         }
       })
       this.saveLocally(res.data, jwt)
+      
+      const userStore  = useUserStore()
+      userStore.username = res.data.username
+      userStore.role = res.data.role.type
+      userStore.jwt = jwt
+
       return res.data
     } catch (error) {
       return useErrorUtil().retrive(error)
