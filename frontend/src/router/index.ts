@@ -4,6 +4,7 @@ import MangaInDetails from '../pages/MangaInDetails.vue'
 import ErrorPage from '../pages/ErrorPage.vue'
 import Login from '../pages/Login.vue'
 import AdminHome from '../pages/AdminHome.vue'
+import MangaForm from '../pages/MangaForm.vue'
 import { useUserStore } from '../stores/userStore'
 
 const routes: RouteRecordRaw[] = [
@@ -12,6 +13,7 @@ const routes: RouteRecordRaw[] = [
   { path: "/error", name: "error", component: ErrorPage, props: route => ({ status: route.query.status, msg: route.query.msg }) },
   { path: "/login", component: Login },
   { path: "/admin", component: AdminHome, meta: { permissions: ['admin'] } },
+  { path: "/mangas/:id/edit", component: MangaForm, meta: { permissions: ['admin'] } },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: ErrorPage }
 ]
 

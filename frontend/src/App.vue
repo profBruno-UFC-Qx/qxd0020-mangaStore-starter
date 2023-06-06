@@ -134,7 +134,11 @@ function logout(){
     </div>
   </header>
 
-  <router-view></router-view>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <router-view></router-view>
+    </div>
+  </div>
 
   <ToastContainer>
     <Toast v-for="message in notificationStore.messages" :key="message.id"
