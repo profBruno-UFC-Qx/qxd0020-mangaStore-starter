@@ -13,7 +13,8 @@ const routes: RouteRecordRaw[] = [
   { path: "/error", name: "error", component: ErrorPage, props: route => ({ status: route.query.status, msg: route.query.msg }) },
   { path: "/login", component: Login },
   { path: "/admin", component: AdminHome, meta: { permissions: ['admin'] } },
-  { path: "/mangas/:id/edit", component: MangaForm, meta: { permissions: ['admin'] } },
+  { path: "/mangas/create", component: MangaForm, meta: { permissions: ['admin'] } },
+  { path: "/mangas/:id/edit", component: MangaForm, meta: { permissions: ['admin'] }, props: true },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: ErrorPage }
 ]
 

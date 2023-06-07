@@ -27,6 +27,6 @@ export const useNotificationStore = defineStore('message', () => {
     messages.value.splice(messages.value.findIndex(item => item.id == id), 1)
   }
 
-  return { messages, add, error, dismiss}
+  return { messages, add, error, dismiss }
 
 })

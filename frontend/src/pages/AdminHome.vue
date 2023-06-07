@@ -46,6 +46,7 @@ function remove() {
   if (useErrorUtil().isAppError(result)) {
     notificationStore.error(result.message)
   } else {
+    mangaCollection.value.items.splice(mangaCollection.value.items.findIndex(m => m.id === selectedManga.value.id), 1)
     notificationStore.add(`Manga ${selectedManga.value.title} removido com sucesso`)
   }
 }
@@ -59,7 +60,7 @@ function askConfirmation(id: number, title: string) {
 <template>
   <LoadingContainer :loading="loading">
 
-
+    <router-link to="/mangas/create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Adicionar</router-link>
     <div class="row">
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
@@ -128,4 +129,5 @@ function askConfirmation(id: number, title: string) {
         </div>
       </div>
     </div>
-</LoadingContainer></template>
+  </LoadingContainer>
+</template>

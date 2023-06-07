@@ -13,6 +13,7 @@ class MangaService {
         params: {
           populate: ['cover'],
           "pagination[page]": page,
+          'sort[0]': 'number',
         }
       })
       return { items: data.data, pagination: data.meta.pagination }
@@ -33,6 +34,46 @@ class MangaService {
       return useErrorUtil().retrive(error)
     }
   }
+
+  async create(manga: Pick<Manga, "title" | "number" | "price"> & { cover: File}): Promise<Manga | ApplicationError> {
+    const userStore = useUserStore()
+    const body = new FormData()
+    body.append('files.cover', manga.cover)
+    body.append('data', JSON.stringify(manga))
+    
+    try {
+      const { data } = await api.post(`/mangas/`, body, {
+        headers: {
+          Authorization: `Bearer ${userStore.jwt}`
+        }
+      })
+      return data.data
+    } catch (error) {
+      return useErrorUtil().retrive(error)
+    } 
+  }
+
+  async update(manga: Pick<Manga, "id" |"title" | "number" | "price"> & { cover?: File}): Promise<Manga | ApplicationError> {
+    const userStore = useUserStore()
+    let body: FormData | { data: typeof manga } = {data: manga}
+    if(manga.cover) {
+      body = new FormData() 
+      body.append('files.cover', manga.cover)
+      body.append('data', JSON.stringify(manga))
+    }
+   
+    try {
+      const { data } = await api.put(`/mangas/${manga.id}`, body, {
+        headers: {
+          Authorization: `Bearer ${userStore.jwt}`
+        }
+      })
+      return data.data
+    } catch (error) {
+      return useErrorUtil().retrive(error)
+    } 
+  }
+
 
   async remove(id: number): Promise<Manga | ApplicationError> {
     const userStore = useUserStore()
