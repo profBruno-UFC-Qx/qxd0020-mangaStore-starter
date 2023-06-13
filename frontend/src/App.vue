@@ -7,7 +7,7 @@ import { useNotificationStore } from './stores/notificationStore'
 
 const userStore = useUserStore()
 const notificationStore = useNotificationStore()
-const isLogged = computed(() => userStore.jwt) 
+const isLogged = computed(() => userStore.isAuthenticated) 
 
 function logout(){
   localStorage.clear()

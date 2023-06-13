@@ -3,9 +3,9 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', () => {
   
-  const username = ref('')
-  const jwt = ref('')
-  const role = ref('')
+  const username = ref( localStorage.getItem('username') || '')
+  const jwt = ref( localStorage.getItem('token') || '')
+  const role = ref( localStorage.getItem('role') ||'')
 
   const isAdmin = computed(() => role.value == "admin")
   const isAuthenticated = computed(() => jwt.value ? true : false)

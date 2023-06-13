@@ -53,7 +53,7 @@ class MangaService {
     } 
   }
 
-  async update(manga: Pick<Manga, "id" |"title" | "number" | "price"> & { cover?: File}): Promise<Manga | ApplicationError> {
+  async update(manga: Pick<Manga, "id" | "title" | "number" | "price"> & { cover?: File}): Promise<Manga | ApplicationError> {
     const userStore = useUserStore()
     let body: FormData | { data: typeof manga } = {data: manga}
     if(manga.cover) {

@@ -22,6 +22,7 @@ class UserService {
           Authorization: `Bearer ${jwt}`
         }
       })
+
       this.saveLocally(res.data, jwt)
       
       const userStore  = useUserStore()
@@ -39,6 +40,12 @@ class UserService {
     localStorage.setItem("username", user.username)
     localStorage.setItem("token", jwt)
     localStorage.setItem("role", user.role.type)
+  }
+
+  logout() {
+    const userStore = useUserStore()
+    userStore.logout()
+    localStorage.clear()
   }
 }
 
